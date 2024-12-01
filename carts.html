@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="carts.css">
+</head>
+<body>
+   
+    <div class="cart-container">
+        <h2>Your Shopping Cart</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="mew images/lappy.jpg" alt="MSI GAMING GF3I"></td>
+                    <td>MSI GAMING GF3I</td>
+                    <td>RM 3400</td>
+                    <td>
+                        <input type="number" value="1" min="1" style="width: 60px;" onchange="updateTotal(this)">
+                    </td>
+                    <td class="item-total">RM 3400</td>
+                </tr>
+                <tr>
+                    <td><img src="mew images/hp lappy pavillion.jpg" alt="HP PAVILLION"></td>
+                    <td>HP PAVILLION</td>
+                    <td>RM 3600</td>
+                    <td>
+                        <input type="number" value="1" min="1" style="width: 60px;" onchange="updateTotal(this)">
+                    </td>
+                    <td class="item-total">RM 3600</td>
+                </tr>
+                <tr>
+                    <td><img src="mew images/hp omen.jfif" alt="HP OMEN"></td>
+                    <td>HP OMEN RED SAKURA</td>
+                    <td>RM 3600</td>
+                    <td>
+                        <input type="number" value="1" min="1" style="width: 60px;" onchange="updateTotal(this)">
+                    </td>
+                    <td class="item-total">RM 3600</td>
+                </tr>
+                <tr>
+                    <td><img src="mew images/brother inkjet.jfif" alt="BROTHER PRINTER"></td>
+                    <td>BROTHER INKJET Printer</td>
+                    <td>RM 600</td>
+                    <td>
+                        <input type="number" value="1" min="1" style="width: 60px;" onchange="updateTotal(this)">
+                    </td>
+                    <td class="item-total">RM 600</td>
+                </tr>
+                <tr>
+                    <td><img src="mew images/epson px.jfif" alt="PRINTER"></td>
+                    <td>EPSON PRINTER INKJET</td>
+                    <td>RM 3600</td>
+                    <td>
+                        <input type="number" value="1" min="1" style="width: 60px;" onchange="updateTotal(this)">
+                    </td>
+                    <td class="item-total">RM 3600</td>
+                </tr>
+                <tr>
+                    <td><img src="mew images/Mysticlight-xs.jpg" alt="DESKTOP"></td>
+                    <td>MYSTICLIGHT-XS</td>
+                    <td>RM 4000</td>
+                    <td>
+                        <input type="number" value="1" min="1" style="width: 60px;" onchange="updateTotal(this)">
+                    </td>
+                    <td class="item-total">RM 4000</td>
+                </tr>
+                <tr>
+                    <td><img src="mew images/razer hanbo chroma.jpg" alt="FULL DESKTOP"></td>
+                    <td>RAZER HANBO GREEN LATERN</td>
+                    <td>RM 3600</td>
+                    <td>
+                        <input type="number" value="1" min="1" style="width: 60px;" onchange="updateTotal(this)">
+                    </td>
+                    <td class="item-total">RM 3600</td>
+                </tr>
+                <tr>
+                    <td><img src="mew images/razer case chasis.jpg" alt="FULL DESKTOP"></td>
+                    <td>RAZER GREE TOMAHAWK</td>
+                    <td>RM 2800</td>
+                    <td>
+                        <input type="number" value="1" min="1" style="width: 60px;" onchange="updateTotal(this)">
+                    </td>
+                    <td class="item-total">RM 2800</td>
+                </tr>
+                <!-- Add other items similarly -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="total">Total:</td>
+                    <td class="grand-total">RM 10,500</td>
+                </tr>
+            </tfoot>
+        </table>
+        <a href="" class="checkout-btn">Proceed to Checkout</a>
+    </div>
+
+    <script>
+        function updateTotal(input) {
+            const row = input.closest('tr');
+            const priceCell = row.cells[2].textContent.replace('RM ', '');
+            const quantity = input.value;
+            const totalCell = row.querySelector('.item-total');
+
+            // Calculate the total for this item
+            const total = priceCell * quantity;
+            totalCell.textContent = `RM ${total}`;
+
+            // Update the grand total
+            updateGrandTotal();
+        }
+
+        function updateGrandTotal() {
+            const itemTotals = document.querySelectorAll('.item-total');
+            let grandTotal = 0;
+
+            itemTotals.forEach(cell => {
+                const total = parseFloat(cell.textContent.replace('RM ', ''));
+                grandTotal += total;
+            });
+
+            document.querySelector('.grand-total').textContent = `RM ${grandTotal}`;
+        }
+    </script>
+</body>
+</html>
